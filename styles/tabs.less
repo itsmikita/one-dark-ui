@@ -89,7 +89,7 @@
       height: 1.5em;
       line-height: 1.5;
       text-align: center;
-      border-radius: @component-border-radius;
+      border-radius: 16px; // @component-border-radius;
       background-color: inherit;
       overflow: hidden;
       transform: scale(0);
@@ -136,7 +136,8 @@
       border: none;
       transform: scale(1);
       &::before {
-        content: "\f052";
+        // content: "\f052";
+        content: "●";
         display: inline-block;
       }
     }
@@ -218,15 +219,15 @@
 atom-pane-axis > atom-pane.active,
 atom-pane-container > atom-pane.pane {
   .tab.active:before {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    z-index: 2;
-    top: 0;
-    left: -1px; // cover left border
-    bottom: 0;
-    width: 2px;
-    background: @accent-color;
+    // content: "";
+    // position: absolute;
+    // pointer-events: none;
+    // z-index: 2;
+    // top: 0;
+    // left: -1px; // cover left border
+    // bottom: 0;
+    // width: 2px;
+    // background: @accent-color;
   }
 }
 

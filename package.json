@@ -1,15 +1,15 @@
 {
-  "name": "one-dark-ui",
+  "name": "rymd-ui",
   "theme": "ui",
   "version": "1.12.3",
-  "description": "Atom One dark UI theme",
+  "description": "A dark Atom UI theme.",
   "keywords": [
     "dark",
-    "adaptive",
+    "space",
     "ui"
   ],
   "license": "MIT",
-  "repository": "https://github.com/atom/one-dark-ui",
+  "repository": "https://github.com/itsmikita/rymd-ui",
   "main": "lib/main",
   "engines": {
     "atom": ">0.40.0"
@@ -54,7 +54,7 @@
       "title": "Tab Close Button",
       "description": "Choose the position of the close button shown in tabs.",
       "type": "string",
-      "default": "Right",
+      "default": "Left",
       "enum": [
         "Left",
         "Right"
@@ -65,13 +65,13 @@
       "title": "Hide dock toggle buttons",
       "description": "Note: When hiding the toggle buttons, opening a dock needs to be done by using the keyboard or other alternatives.",
       "type": "boolean",
-      "default": "false",
+      "default": "true",
       "order": 4
     },
     "stickyHeaders": {
       "title": "Make tree-view project headers sticky",
       "type": "boolean",
-      "default": "false",
+      "default": "true",
       "order": 5
     }
   }
