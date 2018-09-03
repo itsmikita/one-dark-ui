@@ -50,17 +50,6 @@
       ],
       "order": 2
     },
-    "tabCloseButton": {
-      "title": "Tab Close Button",
-      "description": "Choose the position of the close button shown in tabs.",
-      "type": "string",
-      "default": "Left",
-      "enum": [
-        "Left",
-        "Right"
-      ],
-      "order": 3
-    },
     "hideDockButtons": {
       "title": "Hide dock toggle buttons",
       "description": "Note: When hiding the toggle buttons, opening a dock needs to be done by using the keyboard or other alternatives.",
