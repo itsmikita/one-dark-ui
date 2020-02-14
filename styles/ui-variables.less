@@ -16,16 +16,16 @@
 
 .ui-hue();
 
-@text-color                          : hsl(0, 0%, 26%);
-@text-color-subtle                   : hsl(0, 0%, 60%);
-@text-color-highlight                : hsl(0, 0%, 0%);
-@text-color-selected                 : hsl(0, 0%, 100%);
+@text-color                          : hsl(60, 0.5%, 64.1%); // hsl(0, 0%, 26%);
+@text-color-subtle                   : hsl(60, 0.5%, 64.1%); //hsl(0, 0%, 60%);
+@text-color-highlight                : hsl(300, 0.9%, 78.2%); // hsl(0, 0%, 0%);
+@text-color-selected                 : hsl(300, 0.9%, 78.2%); // hsl(0, 0%, 100%);
 
 // Colors taken from https://developer.apple.com/macos/human-interface-guidelines/visual-design/color/
-@text-color-info                     : hsl(211, 100%, 51%);
-@text-color-success                  : hsl(104, 68%, 53%);
-@text-color-warning                  : hsl(35, 100%, 50%);
-@text-color-error                    : hsl(3, 100%, 59%);
+@text-color-info                     : hsl(209.4, 100%, 50%); // hsl(211, 100%, 51%);
+@text-color-success                  : hsl(131.1, 100%, 43.3%); // hsl(104, 68%, 53%);
+@text-color-warning                  : hsl(36.5, 100%, 50%); // hsl(35, 100%, 50%);
+@text-color-error                    : hsl(359.7, 100%, 57.8%); // hsl(3, 100%, 59%);
 
 @text-color-ignored                  : @text-color-subtle;
 @text-color-added                    : @text-color-success;
@@ -37,47 +37,47 @@
 @background-color-success            : @text-color-success;
 @background-color-warning            : @text-color-warning;
 @background-color-error              : @text-color-error;
-@background-color-highlight          : hsl(0, 0%, 85%);
+@background-color-highlight          : hsl(0, 0%, 29.8%); // hsl(0, 0%, 85%);
 @background-color-selected           : @text-color-info;
 
-@app-background-color                : hsl(0, 0%, 80%);
+@app-background-color                : hsl(0, 0%, 10.6%); // hsl(0, 0%, 80%);
 
-@base-background-color               : hsl(0, 0%, 92%);
-@base-background-color-transparent   : hsla(0, 0%, 100%, 0.75);
-@base-border-color                   : hsl(0, 0%, 78%);
-@base-border-color-transparent       : hsla(0, 0%, 0%, 0.2);
+@base-background-color               : hsl(0, 0%, 13.7%); // hsl(0, 0%, 92%);
+@base-background-color-transparent   : hsla(0, 0%, 13.7%, 0.75); // hsla(0, 0%, 100%, 0.75);
+@base-border-color                   : hsl(0, 0%, 0%); // hsl(0, 0%, 78%);
+@base-border-color-transparent       : hsla(0, 0%, 0%, 0.2); // hsla(0, 0%, 0%, 0.2);
 
 @pane-item-background-color          : @base-background-color;
 @pane-item-border-color              : @base-border-color;
 
-@input-background-color              : hsl(0, 0%, 100%);
-@input-border-color                  : fadeout(@base-border-color, 10%);
-@input-border-color-active           : hsl(211, 58%, 70%);
-@input-outline-color-active          : hsl(210, 70%, 74%);
+@input-background-color              : hsl(0, 0%, 19.2%); // hsl(0, 0%, 100%);
+@input-border-color                  : hsl(0, 0%, 23.1%); // fadeout(@base-border-color, 10%);
+@input-border-color-active           : hsl(0, 0%, 23.1%); // hsl(211, 58%, 70%);
+@input-outline-color-active          : hsl(204.8, 54.7%, 37.3%); // hsl(210, 70%, 74%);
 
 @tool-panel-background-color         : @base-background-color;
 @tool-panel-border-color             : @base-border-color;
 
-@panel-heading-background-color      : hsl(0, 0%, 76%);
+@panel-heading-background-color      : hsl(300, 1.2%, 15.9%); // hsl(0, 0%, 76%);
 @panel-heading-border-color          : transparent;
 
-@overlay-background-color            : hsl(0, 0%, 92%);
+@overlay-background-color            : hsl(330, 3.8%, 20.4%); // hsl(0, 0%, 92%);
 @overlay-border-color                : @base-border-color;
 
-@button-background-color             : @input-background-color;
-@button-background-color-selected    : @button-background-color;
-@button-border-color                 : hsl(0, 0%, 82%);
-@button-border-color--bottom         : hsl(0, 0%, 70%);
-@button-text-color                   : @text-color;
+@button-background-color             : hsl(0, 0%, 40.4%); // linear-gradient( hsl(216.2, 81.8%, 49.6%), hsl(216, 82.2%, 44.1%) ); // @input-background-color;
+@button-background-color-selected    : hsl(216.2, 81.8%, 49.6%); // linear-gradient( hsl(214.9, 90.4%, 54.9%), hsl(214.9, 90.4%, 54.9%) ); // @button-background-color;
+@button-border-color                 : @base-border-color-transparent; // hsl(0, 0%, 82%);
+@button-border-color--bottom         : @base-border-color; // hsl(0, 0%, 70%);
+@button-text-color                   : hsla(0, 0%, 100%, 0.8); // @text-color;
 @button-text-color-inverted          : @text-color-selected;
 
-@tab-bar-border-color                : hsl(0, 0%, 54%);
-@tab-bar-border-color-transparent    : hsla(0, 0%, 0%, 0.3);
-@tab-background-color                : hsl(0, 0%, 70%);
-@tab-bar-background-color            : @tab-background-color;
-@tab-background-color-active         : hsl(0, 0%, 82%);
+@tab-bar-border-color                : hsl(0, 0%, 0%); // hsl(0, 0%, 54%);
+@tab-bar-border-color-transparent    : hsla(0, 0%, 100%, 0.5); // hsla(0, 0%, 0%, 0.3);
+@tab-background-color                : hsl(0, 0%, 13.7%); // hsl(0, 0%, 70%);
+@tab-bar-background-color            : hsl(0, 0%, 13.7%); // @tab-background-color;
+@tab-background-color-active         : hsl(0, 0%, 19.6%); // hsl(0, 0%, 82%);
 @tab-bar-background-color--blurred   : @tab-background-color-active;
-@tab-background-color-hover          : hsl(0, 0%, 65%);
+@tab-background-color-hover          : hsl(0, 0%, 19.6%); // hsl(0, 0%, 65%);
 @tab-border-color                    : @tab-bar-border-color;
 @tab-text-color                      : @text-color-highlight;
 
@@ -93,7 +93,7 @@
 
 @tree-view-background-color          : transparent;
 @tree-view-border-color              : @tab-bar-border-color-transparent;
-@tree-view-background-color-highlight: linear-gradient(to right, rgba(0,0,0, 0.18), rgba(0,0,0, 0.15), rgba(0,0,0, 0.22));
+@tree-view-background-color-highlight: hsla(300, 0.7%, 30%, 0.8); // linear-gradient(to right, rgba(0,0,0, 0.18), rgba(0,0,0, 0.15), rgba(0,0,0, 0.22));
 
 @scrollbar-color                     : hsl(0, 0%, 76%);
 @scrollbar-background-color          : hsl(0, 0%, 98%);

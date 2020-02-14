@@ -16,11 +16,12 @@
 @padding-top-close-icon: 3px;
 
 .tab-bar {
-  background: linear-gradient(
-    to top,
-    darken(@tab-bar-background-color, 10%),
-    darken(@tab-bar-background-color, 20%)
-  );
+  // background: linear-gradient(
+  //   to top,
+  //   darken(@tab-bar-background-color, 10%),
+  //   darken(@tab-bar-background-color, 20%)
+  // );
+  background: @tab-bar-background-color;
   overflow-x: auto;
   overflow-y: hidden;
   box-shadow: @tab-bar-inset-box-shadow;
@@ -73,19 +74,20 @@
 
 .tab:hover .title,
 .tab.modified .title {
-  -webkit-mask: linear-gradient(to right, transparent, black 1.125em) no-repeat;
-  -webkit-mask-position: 0.4em 0;
+  // -webkit-mask: linear-gradient(to right, transparent, black 1.125em) no-repeat;
+  // -webkit-mask-position: 0.4em 0;
 }
 
 // Active tab
 .tab-bar .tab.active {
   flex: 1;
   color: @text-color-highlight;
-  background: linear-gradient(
-    to top,
-    @tab-background-color-active,
-    lighten(@tab-background-color-active, 6%)
-  );
+  background: @tab-background-color-active;
+  // background: linear-gradient(
+  //   to top,
+  //   @tab-background-color-active,
+  //   lighten(@tab-background-color-active, 6%)
+  // );
 }
 
 // Style only for the file tabs, not the docks.
@@ -144,6 +146,7 @@
 // display modified indicator in the tab when not hovered
 .tab-bar .tab.modified:not(:hover) {
   .close-icon {
+    background: @text-color-info;
     display: inline-block;
     top: @top-modified-icon;
     left: @left-modified-icon;

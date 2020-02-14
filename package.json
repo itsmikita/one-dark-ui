@@ -74,7 +74,7 @@
     "sanfrancisco"
   ],
   "main": "lib/main",
-  "name": "native-ui",
+  "name": "rymd-ui",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fv0/native-ui.git"
