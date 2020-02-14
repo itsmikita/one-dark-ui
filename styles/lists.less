@@ -1,5 +1,8 @@
-.list-group,
-.list-tree {
+@import "ui-variables";
+@import "ui-mixins";
+@import "octicon-mixins";
+
+.list-group, .list-tree {
   li:not(.list-nested-item),
   li.list-nested-item > .list-item {
     .text(normal);
@@ -26,29 +29,19 @@
 
     li:not(.list-nested-item).selected.status-@{status},
     li.list-nested-item.selected.status-@{status} > .list-item {
-      color: @color;
+      color: darken(@color, 7%);
     }
-
   }
-
+  .generate-list-item-status-color(@text-color-subtle, ignored);
   .generate-list-item-status-color(@text-color-added, added);
-  .generate-list-item-status-color(@text-color-ignored, ignored);
+  .generate-list-item-status-color(@text-color-renamed, renamed);
   .generate-list-item-status-color(@text-color-modified, modified);
   .generate-list-item-status-color(@text-color-removed, removed);
-  .generate-list-item-status-color(@text-color-renamed, renamed);
 
   li:not(.list-nested-item).selected,
   li.list-nested-item.selected > .list-item {
     .text(selected);
   }
-
-  .no-icon {
-    padding-left: calc(@ui-padding-icon ~"+" @component-icon-size);
-  }
-}
-
-.list-tree.has-collapsable-children .list-nested-item > .list-item::before {
-  text-align: center;
 }
 
 .select-list ol.list-group,
@@ -57,66 +50,83 @@
     .secondary-line {
       color: @text-color-subtle;
     }
+
     &.selected .secondary-line {
-      color: fade(@text-color-highlight, 50%);
+      color: lighten(@text-color-subtle, 10%);
       text-shadow: none;
     }
   }
 
-  // We want to highlight the background of the list items because we dont
-  // know their size.
+  // We want to highlight the background of the list items because we don’t know their size.
   li.selected {
     background-color: @background-color-selected;
-    &:before{ display: none; }
+
+    &:before {
+      display: none;
+      background: none;
+    }
   }
 
-  &.mark-active {
+  &.mark-active{
     @active-icon-size: 14px;
 
     // pad in front of the text where the icon would be We'll pad the non-
     // active items with a 'fake' icon so other classes can pad the item
     // without worrying about the icon padding.
     li:before {
-      content: '';
+      content: "";
       background-color: transparent;
       position: static;
       display: inline-block;
       left: auto; right: auto;
       height: @active-icon-size;
       width: @active-icon-size;
-      font-size: @active-icon-size;
     }
     > li:not(.active):before {
-      margin-right: @ui-padding-icon;
+      margin-right: @component-icon-padding;
     }
     li.active {
-      // .octicon(check, @active-icon-size);
+      .octicon(check, @active-icon-size);
       &:before {
-        margin-right: @ui-padding-icon;
+        margin-right: @component-icon-padding;
         color: @text-color-success;
       }
     }
   }
 }
 
+autocomplete-suggestion-list .suggestion-list-scroller {
+  border-radius: 0 !important;
+}
+
+autocomplete-suggestion-list .select-list.popover-list .suggestion-description {
+  border-radius: 0 0 @component-border-radius @component-border-radius;
+  background-color: @status-bar-background-color;
+  color: @text-color;
+  line-height: 1.15; // vertically center the text
+  border-top: 1px solid @tab-bar-border-color;
+}
+
 .select-list.popover-list {
-  @popover-list-padding: @ui-padding/4;
-  background-color: @overlay-background-color;
-  box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.3);
-  padding: @popover-list-padding;
-  border-radius: @component-border-radius;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  padding: @component-padding/2;
 
-  atom-text-editor[mini] {
-    margin-bottom: @popover-list-padding;
-  }
-
-  ol.list-group {
-    margin-top: @popover-list-padding;
+  atom-text-editor {
+    margin-bottom: @component-padding/2;
   }
 
   .list-group li {
-    padding-left: @popover-list-padding;
+    padding-left: @component-padding/2;
   }
+}
+
+autocomplete-suggestion-list.select-list.popover-list ol.list-group li:not(.selected) {
+  background-color: @overlay-background-color;
+}
+
+autocomplete-suggestion-list .list-group .selected .icon-container .icon {
+  color: @text-color-selected;
+  background: darken(@background-color-selected, 10%);
 }
 
 .ui-sortable {
@@ -131,14 +141,13 @@
   }
 }
 
-li.ui-draggable-dragging,
-li.ui-sortable-helper {
-  line-height: @ui-line-height;
-  height: @ui-line-height;
+li.ui-draggable-dragging, li.ui-sortable-helper {
+  line-height: @component-line-height;
+  height: @component-line-height;
   border: 0;
   border-radius: 0;
   list-style: none;
-  padding: 0 @ui-padding;
+  padding: 0 @component-padding;
   background: @background-color-highlight;
   box-shadow: 0 0 1px @base-border-color;
 }

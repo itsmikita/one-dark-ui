@@ -1,53 +1,49 @@
+@import "ui-variables";
+
 .tooltip {
   white-space: nowrap;
-  font-size: @ui-size*1.15;
+
+  .keystroke {
+    color: @text-color-subtle;
+    padding-left: 2/@rem;
+  }
 
   &.in {
     opacity: 1;
-    transition: opacity .12s ease-out;
   }
 
   .tooltip-inner {
-    line-height: 1;
-    padding: @ui-padding*.5 @ui-padding*.65;
-    border-radius: @component-border-radius;
-    background-color: @tooltip-background-color;
-    color: @tooltip-text-color;
+    background-color: @tip-background-color;
+    padding: (@component-padding / 3) @component-padding;
+    color: @tip-text-color;
     white-space: nowrap;
     max-width: none;
-  }
-
-  .keystroke {
-    font-size: max(1em, @ui-size*.85);
-    padding: .1em .4em;
-    margin: 0 @ui-padding*-.35 0 @ui-padding*.25;
-    border-radius: max(2px, @component-border-radius / 2);
-    color: @tooltip-text-key-color;
-    background: @tooltip-background-key-color;
+    letter-spacing: 0.01rem;
+    border-radius: @component-border-radius-small;
   }
 
   &.top .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
+    border-top-color: @tip-arrow-color;
   }
   &.top-left .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
+    border-top-color: @tip-arrow-color;
   }
   &.top-right .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
+    border-top-color: @tip-arrow-color;
   }
   &.right .tooltip-arrow {
-    border-right-color: @tooltip-background-color;
+    border-right-color: @tip-arrow-color;
   }
   &.left .tooltip-arrow {
-    border-left-color: @tooltip-background-color;
+    border-left-color: @tip-arrow-color;
   }
   &.bottom .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
+    border-bottom-color: @tip-arrow-color;
   }
   &.bottom-left .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
+    border-bottom-color: @tip-arrow-color;
   }
   &.bottom-right .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
+    border-bottom-color: @tip-arrow-color;
   }
 }

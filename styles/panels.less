@@ -1,64 +1,79 @@
-
-// Panels
-
-atom-panel {
-  .text(normal);
-  position: relative;
-  border-bottom: 1px solid @base-border-color;
-
-  &.top {
-    border-right: 1px solid @base-border-color;
-  }
-  &.left {
-    border-right: 1px solid @base-border-color;
-  }
-  &.right {
-    border-left: 1px solid @base-border-color;
-  }
-  &.bottom {
-    border-right: 1px solid @base-border-color;
-  }
-  &.footer:last-child {
-    border-bottom: none;
-  }
-  &.tool-panel:empty {
-    border: none;
-  }
-}
+@import "ui-mixins";
+@import "ui-variables";
+@import "buttons";
 
 .panel {
   &.bordered {
-    border: 1px solid @base-border-color;
+    border: 1/@rem solid @base-border-color;
     border-radius: @component-border-radius;
   }
 }
 
-.inset-panel {
+atom-panel,
+.tool-panel {
+  .text(normal);
   position: relative;
-  background-color: @inset-panel-background-color;
-  border-radius: @component-border-radius;
-  &.bordered {
-    border: 1px solid @base-border-color;
-    border-radius: @component-border-radius;
+  background-color: @tool-panel-background-color;
+  text-shadow: none; // overwrite
+
+  &.right,
+  &.panel-right {
+    border-left: 1/@rem solid @tool-panel-border-color;
   }
-  & .panel-heading {
-    border-color: @inset-panel-border-color;
+
+  .inset-panel {
+    border-radius: @component-border-radius;
+    border: 1/@rem solid @tool-panel-border-color;
   }
 }
 
 .panel-heading {
-  .text(normal);
-  border-bottom: 1px solid @panel-heading-border-color;
-  background-color: @panel-heading-background-color;
+  border-bottom: none;
+  padding: (@component-padding - 2/@rem) @component-padding;
+  background-color: transparent;
+  background-image: linear-gradient(@panel-heading-background-color, darken(@panel-heading-background-color, 10%));
+}
 
-  .btn {
-    padding-left: 8px;
-    padding-right: 8px;
-    .btn-default(
-      lighten(@button-background-color, 10%),
-      lighten(@button-background-color-hover, 10%),
-      lighten(@button-background-color-selected, 10%),
-      lighten(@text-color, 10%)
-    );
-  }
+// Among others this is used for the finding panel
+.panel-bottom {
+  box-shadow: 0 -1/@rem 0 0 @base-border-color-transparent;
+}
+
+// Make the panel more like the Spotlight search
+.command-palette,
+.fuzzy-finder,
+.symbols-view,
+.grammar-selector,
+.encoding-selector {
+  .editor.mini {
+    color: @text-color;
+    font-family: @font-family-headlines;
+    font-size: @font-size-h1;
+    margin-left: -@component-padding;
+    padding: 0 @component-padding 0 @component-padding;
+    max-height: 30px !important;
+    line-height: 30px !important;
+
+    * {
+      height: 30px !important; // overwrite inline styles of `22px`
+    }
+
+    // Remove styles of the standard input field
+    &.is-focused,
+    &:hover {
+      border: none;
+      background-color: transparent;
+      box-shadow: none !important;
+    }
+
+    .region {
+      height: 100% !important;
+    }
+  } // .editor.mini
+}
+
+// Increase padding from label to the input
+.tree-view-dialog label + .editor.mini {
+  margin-top: @component-padding;
+  margin-bottom: 0;
 }

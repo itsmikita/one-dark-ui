@@ -1,251 +1,153 @@
+@import "ui-variables";
 
-// Tabs
+@tab-top-padding: 5px;
+@tab-bottom-border-height: 5px;
+@tab-padding-sides: 6px;
+@tab-border: 1px solid @base-border-color;
+@tab-bar-inset-box-shadow: inset 0 -2px 2px -2px rgba(0, 0, 0, 0.15);
 
-@tab-border: 1px solid @tab-border-color;
-@title-padding: .66em;
-@icon-padding-top: .5em; // 2.5 (total) - 1.5 (text) / 2
-@icon-padding-right: .5em;
+// “Modified” icon
+@dimensions-modified-icon: 6px;
+@top-modified-icon: 9px;
+@left-modified-icon: 12px;
+
+// “Close” icon
+@dimensions-close-icon: 18px;
+@padding-top-close-icon: 3px;
 
 .tab-bar {
-  position: relative;
-  height: @ui-tab-height;
-  box-shadow: inset 0 -1px 0 @tab-border-color;
-  background: @tab-bar-background-color;
+  background: linear-gradient(
+    to top,
+    darken(@tab-bar-background-color, 10%),
+    darken(@tab-bar-background-color, 20%)
+  );
   overflow-x: auto;
   overflow-y: hidden;
+  box-shadow: @tab-bar-inset-box-shadow;
+  z-index: 1;
   border-radius: 0;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 
   &:empty {
     display: none;
   }
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+} // tab-bar
 
-  // Tab ----------------------
+.tab-bar .tab {
+  position: relative;
+  font-size: @font-size;
+  text-align: center;
+  background-color: @tab-background-color;
+  box-shadow: @tab-bar-inset-box-shadow;
+  border-right: 1px solid @tab-bar-border-color;
+  line-height: @tab-height;
+  color: @tab-text-color;
+  padding: 0 0 0 @tab-padding-sides;
+  margin: 0;
+  max-width: 100%;
 
-  .tab {
-    position: relative;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    height: inherit;
-    font-size: inherit;
-    line-height: @ui-tab-height;
-    color: @tab-text-color;
-    background-color: @tab-background-color;
-    box-shadow: inherit;
-    border-left: @tab-border;
-    &.active {
-      color: @tab-text-color-active;
-      background-color: @tab-background-color-active;
-      box-shadow: none;
-    }
-    &:first-of-type {
-      border-left-color: transparent;
-    }
-    &:last-of-type {
-      // use box-shadow to not take up any space
-      box-shadow: inset 0 -1px 0 @tab-border-color, 1px 0 0 @base-border-color;
-    }
-    &.active:last-of-type {
-      box-shadow: 1px 0 0 @base-border-color;
-    }
-
-
-    // Title ----------------------
-
-    .title {
-      text-align: center;
-      margin: 0 @title-padding;
-    }
-
-    // VCS coloring ----------------------
-    &:not(.active) .status-added    { color: @tab-inactive-status-added; }
-    &:not(.active) .status-modified { color: @tab-inactive-status-modified; }
-
-
-    // Icons ----------------------
-
-    .title.title:before {
-      margin-right: .3em;
-      width: auto;
-      height: auto;
-      line-height: 1;
-      font-size: 1.125em;
-      vertical-align: -.0625em; // Adjust center for the 0.1em font-size increase
-    }
-
-    // Close icon ----------------------
-
-    .close-icon {
-      top: @icon-padding-top;
-      left: @icon-padding-right;
-      z-index: 2;
-      font-size: 1em;
-      width: 1.5em;
-      height: 1.5em;
-      line-height: 1.5;
-      text-align: center;
-      border-radius: 16px; // @component-border-radius;
-      background-color: inherit;
-      overflow: hidden;
-      transform: scale(0);
-      transition: transform .08s;
-      &:hover {
-        color: @accent-text-color;
-        background-color: @accent-color;
-      }
-      &:active {
-        background-color: fade(@accent-color, 50%);
-      }
-      &::before {
-        z-index: 1;
-        font-size: 1.1em;
-        vertical-align: -.05em; // Adjust center for the 0.1em font-size increase
-        width: auto;
-        height: auto;
-        pointer-events: none;
-      }
-    }
-    &:hover .close-icon {
-      transform: scale(1);
-      transition-duration: .16s;
-    }
+  &:hover {
+    background-color: @tab-background-color-hover;
   }
 
-  // Modified icon ----------------------
-
-  .tab.modified {
-    &:hover .close-icon {
-      color: @accent-color;
-      &:hover {
-        color: @accent-bg-text-color;
-      }
-    }
-    &:not(:hover) .close-icon {
-      top: @icon-padding-top;
-      right: @icon-padding-right;
-      width: 1.5em;
-      height: 1.5em;
-      line-height: 1.5;
-      color: @accent-color;
-      border-radius: @component-border-radius;
-      border: none;
-      transform: scale(1);
-      &::before {
-        // content: "\f052";
-        content: "●";
-        display: inline-block;
-      }
-    }
-  }
-
-
-  // Tabs in the docks ----------------------
-
-  atom-dock & {
-    .tab.active {
-      background-color: @tool-panel-background-color;
-    }
-  }
-
-
-  // Dragging ----------------------
-
-  .tab.is-dragging {
-    opacity: .5;
-
-    .close-icon,
-    &:before {
-      visibility: hidden;
-    }
-  }
-
-  .placeholder {
-    position: relative;
-    pointer-events: none;
-
-    // bar
-    &:before {
-      z-index: 1;
-      margin: 0;
-      width: 2px;
-      height: @ui-tab-height;
-      background-color: @accent-color;
-    }
-
-    // arrow
-    &:after {
-      z-index: 0;
-      top: @ui-tab-height/2;
-      margin: -4px 0 0 -3px;
-      border-radius: 0;
-      border: 4px solid @accent-color;
-      transform: rotate(45deg);
-      background: transparent;
-    }
-
-    &:last-child {
-      &:before {
-        margin-left: -2px;
-      }
-      &:after {
-        transform: none;
-        margin-left: -10px;
-        border-color: transparent @accent-color transparent transparent;
-      }
-    }
-  }
-
-
-  // Overrides ----------------------
-
-  // keep tabs same size when active
-  .tab,
-  .tab.active {
-    padding-right: 0;
-    .title {
-      padding: 0;
-    }
+  &:last-child {
+    border-right: none;
   }
 }
 
+// Style only for the file tabs, not the docks.
+[location="center"].tab-bar .tab {
+  flex: none;
+  padding: 0 (@component-padding * 2);
+  min-width: 140px;
 
-// Active pane marker --------------
-
-atom-pane-axis > atom-pane.active,
-atom-pane-container > atom-pane.pane {
-  .tab.active:before {
-    // content: "";
-    // position: absolute;
-    // pointer-events: none;
-    // z-index: 2;
-    // top: 0;
-    // left: -1px; // cover left border
-    // bottom: 0;
-    // width: 2px;
-    // background: @accent-color;
+  .native-ui-autoResizeTabs & {
+    flex: 1;
+    flex-grow: 1;
+    transition: max-width 0.35s cubic-bezier(0.785, 0.135, 0.150, 0.860); // resize tabs with animation
   }
 }
 
-// hide marker in docks
-atom-dock .tab-bar .tab::before {
-  display: none;
+.tab:hover .title,
+.tab.modified .title {
+  -webkit-mask: linear-gradient(to right, transparent, black 1.125em) no-repeat;
+  -webkit-mask-position: 0.4em 0;
 }
 
-
-// Custom tabs --------------
-
+// Active tab
 .tab-bar .tab.active {
-  &[data-type$="Editor"],
-  &[data-type$="AboutView"],
-  &[data-type$="TimecopView"],
-  &[data-type$="StyleguideView"],
-  &[data-type="MarkdownPreviewView"] {
-    color: @tab-text-color-editor;
-    background-color: @tab-background-color-editor; // Match syntax background color
+  flex: 1;
+  color: @text-color-highlight;
+  background: linear-gradient(
+    to top,
+    @tab-background-color-active,
+    lighten(@tab-background-color-active, 6%)
+  );
+}
+
+// Style only for the file tabs, not the docks.
+[location="center"].tab-bar .tab.active {
+  flex: none;
+
+  // User settings
+  .native-ui-autoResizeTabs & {
+    flex: 1;
+  }
+}
+
+.tab-bar .tab.active .title {
+  padding-right: 0; // otherwise the title jumps when it’s the active tab
+}
+
+.tab-bar .tab .close-icon {
+  display: none;
+  z-index: 3;
+  height: @dimensions-close-icon;
+  width: @dimensions-close-icon;
+  color: @text-color !important;
+  border-radius: 2px;
+  text-align: left;
+
+  &:hover,
+  &:active {
+    background: @background-close-button-hover;
+  }
+
+  &:before { // the close icon itself
+    content: "✕";
+    position: relative;
+    top: -3px;
+    width: 100%;
+    text-align: center;
+  }
+} // .close-icon
+
+// Change the modified icon to a black bullet
+.tab-bar .tab.modified:not(:hover) .close-icon {
+  border: none;
+  background-color: @text-color;
+}
+
+// Display close icon only when the tab is hovered
+.tab-bar .tab:hover .close-icon,
+.tab-bar .tab.modified:hover .close-icon { // Display close icon when modified icon is hovered
+  display: inline-block;
+  top: @padding-top-close-icon;
+  left: @tab-padding-sides;
+  width: @dimensions-close-icon;
+  height: @dimensions-close-icon;
+}
+
+// display modified indicator in the tab when not hovered
+.tab-bar .tab.modified:not(:hover) {
+  .close-icon {
+    display: inline-block;
+    top: @top-modified-icon;
+    left: @left-modified-icon;
+    width: @dimensions-modified-icon;
+    height: @dimensions-modified-icon;
   }
 }

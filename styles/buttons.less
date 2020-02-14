@@ -1,186 +1,108 @@
+@import "ui-variables";
+@import "ui-mixins";
 
-@btn-border: 1px solid @button-border-color;
-@btn-padding: 0 @ui-size/1.25;
-
-// Mixins -----------------------
-
-.btn-default (@color, @hover-color, @selected-color, @text-color) {
-  color: @text-color;
-  text-shadow: none;
-  border: @btn-border;
-  background-color: @color;
-  background-image: linear-gradient(lighten(@color, 2%), @color);
-
-  &:hover {
-    color: @text-color-highlight;
-    background-image: linear-gradient(lighten(@hover-color, 2%), @hover-color);
-  }
-  &:active {
-    background: darken(@color, 4%);
-    box-shadow: none;
-  }
-  &.selected {
-    background: @selected-color;
-  }
-  &.selected:focus,
-  &.selected:hover {
-    background: lighten(@selected-color, 2%);
-  }
-  &:focus {
-    .focus(); // unfortunately :focus styles stay even after releasing mouse.
-  }
+.box-shadow() {
+  // atom uses `!important by default, so we need to overwrite this
+  box-shadow:
+    inset 0 0 0 1/@rem hsla(0,0%,0%, 0.07),
+    inset 0 -1/@rem 0 0 hsla(0,0%,0%, 0.3) !important;
 }
 
-.btn-variant (@color) {
-  @_text-color: contrast(@color, white, hsl(0,0%,20%), 33% );
-  .btn-default(
-    @color,
-    lighten(@color, 3%),
-    saturate(darken(@color, 12%), 20%),
-    @text-color-highlight
-  );
-  color: @_text-color;
-
-  & when (@ui-lightness > 50%) {
-    border-color: transparent; // hide border on light backgrounds
-  }
-
-  &:hover,
-  &:focus {
-    color: @_text-color;
-  }
-  &:focus {
-    border-color: transparent;
-    background-clip: padding-box;
-    box-shadow: inset 0 0 0 1px fade(@base-border-color, 50%), 0 0 0 1px @color;
-  }
-
-  &.icon:before {
-    color: @_text-color;
-  }
-}
-
-
-// Buttons -----------------------
-
+// Default button
 .btn {
-  height: initial;
-  padding: @btn-padding;
-  font-size: @ui-size;
-  line-height: @ui-line-height;
-}
+  .mixin-btn(@button-background-color);
+  .box-shadow();
 
-.btn,
-.btn.btn-default {
-  .btn-default(@button-background-color, @button-background-color-hover, @button-background-color-selected, @text-color);
-}
+  color: @button-text-color; // overwrite mixin
 
-.btn.btn-primary {
-  .btn-variant(@accent-bg-color);
-}
-.btn.btn-info {
-  .btn-variant(@background-color-info);
-}
-.btn.btn-success {
-  .btn-variant(@background-color-success);
-}
-.btn.btn-warning {
-  .btn-variant(@background-color-warning);
-}
-.btn.btn-error {
-  .btn-variant(@background-color-error);
-}
+  &:active,
+  &:focus {
+    .box-shadow();
 
-
-// Button Sizes -----------------------
-
-.btn.btn-xs,
-.btn-group-xs > .btn {
-  font-size: @ui-size*.8;
-  line-height: @ui-line-height;
-  padding: @btn-padding;
-}
-.btn.btn-sm,
-.btn-group-sm > .btn {
-  font-size: @ui-size*.9;
-  line-height: @ui-line-height;
-  padding: @btn-padding;
-}
-.btn.btn-lg,
-.btn-group-lg > .btn {
-  font-size: @ui-size * 1.5;
-  line-height: @ui-line-height;
-  padding: @btn-padding;
-}
-
-
-// Button Group -----------------------
-
-.btn-group > .btn {
-  z-index: 0;
-  &:hover {
-    z-index: 0;
-  }
-  &.btn:focus {
-    z-index: 1;
-    .focus();
-  }
-
-  &:first-child {
-    border-left: @btn-border;
-  }
-  &:last-child,
-  &.selected:last-child {
-    border-right: @btn-border;
-  }
-
-  // hide border on light backgrounds
-  & when (@ui-lightness > 50%) {
-    &.btn-primary:first-child,
-    &.btn-info:first-child,
-    &.btn-success:first-child,
-    &.btn-warning:first-child,
-    &.btn-error:first-child {
-      border-left-color: transparent;
-    }
-
-    &.btn-primary:last-child,
-    &.btn-info:last-child,
-    &.btn-success:last-child,
-    &.btn-warning:last-child,
-    &.btn-error:last-child {
-      border-right-color: transparent;
-    }
+    background: linear-gradient(to top, darken(@button-background-color, 15%), @button-background-color);
+    color: @button-text-color; // overwrite mixin
   }
 
   &.selected,
-  &.selected:first-child,
-  &.selected:last-child {
-    color: @button-text-color-selected;
-    border-color: @button-border-color-selected;
+  &.selected:hover,
+  &.selected.icon:hover {
+    background: linear-gradient(to top, darken(@background-color-selected, 15%), @background-color-selected);
+    color: @button-text-color-inverted;
   }
 
-  & when (@ui-lightness > 50%) {
-    &.selected + .btn {
-      border-left-color: @button-border-color-selected;
-    }
-    &.selected + .selected {
-      border-left-color: mix(@button-border-color, @button-border-color-selected);
-    }
+  &.icon:hover {
+    color: @button-text-color; // overwrite mixin
+  }
+} // .btn
+
+// Button in different states
+.btn.btn-info,
+.btn.btn-primary {
+  .mixin-btn(@background-color-selected);
+  .mixin-btn-colored--active-focus-selected(@background-color-selected);
+}
+
+.btn.btn-success {
+  .mixin-btn(@background-color-success);
+  .mixin-btn-colored--active-focus-selected(@background-color-success);
+}
+
+.btn.btn-warning {
+  .mixin-btn(@background-color-warning);
+  .mixin-btn-colored--active-focus-selected(@background-color-warning)
+}
+
+.btn.btn-error {
+  .mixin-btn(@background-color-error);
+  .mixin-btn-colored--active-focus-selected(@background-color-error);
+}
+
+// Button groups
+
+.btn-group > .btn,
+.btn-group > .btn-info {
+  border: none;
+
+  &.selected {
+    border-left-color: transparent;
   }
 
-  &.selected:focus {
-    border-color: @button-background-color-selected;
-    box-shadow: inset 0 0 0 1px fade(@base-border-color, 50%), 0 0 0 1px @button-background-color-selected;
+  &:first-child {
+    border-left: none;
+  }
+
+  &:only-child {
+    border: none;
   }
 }
 
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  opacity: 0.5;
+}
 
-// Button Icons -----------------------
+.section-heading .btn {
+  font-family: @font-family;
+}
 
-.btn.icon:before {
-  width: auto;
-  height: auto;
-  font-size: 1.333333em;
-  vertical-align: -.1em;
+// Fix button groups
+
+.btn-group > .btn:first-child {
+  border-top-left-radius: @component-border-radius-small;
+  border-bottom-left-radius: @component-border-radius-small;
+}
+
+.btn-group > .btn:last-child,
+.btn-group > .btn.selected:last-child,
+.btn-group > .dropdown-toggle {
+  border-top-right-radius: @component-border-radius-small;
+  border-bottom-right-radius: @component-border-radius-small;
+}
+
+// This is a bit of a hack. Otherwise the “Uninstall” button has no rounded corners, since the :only-child rule doesn’t apply here.
+.btn.icon[style="display: none;"] + .btn.icon,
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-left-radius: @component-border-radius-small;
+  border-bottom-left-radius: @component-border-radius-small;
 }
