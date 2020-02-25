@@ -16,7 +16,7 @@
 
 .ui-hue();
 
-@text-color                          : hsl(60, 0.5%, 64.1%); // hsl(0, 0%, 26%);
+@text-color                          : hsl(0, 0.8%, 87%); // hsl(60, 0.5%, 100%); // hsl(60, 0.5%, 64.1%); // hsl(0, 0%, 26%);
 @text-color-subtle                   : hsl(60, 0.5%, 64.1%); //hsl(0, 0%, 60%);
 @text-color-highlight                : hsl(300, 0.9%, 78.2%); // hsl(0, 0%, 0%);
 @text-color-selected                 : hsl(300, 0.9%, 78.2%); // hsl(0, 0%, 100%);
@@ -71,7 +71,7 @@
 @button-text-color                   : hsla(0, 0%, 100%, 0.8); // @text-color;
 @button-text-color-inverted          : @text-color-selected;
 
-@tab-bar-border-color                : hsl(0, 0%, 0%); // hsl(0, 0%, 54%);
+@tab-bar-border-color                : hsla( 0, 0%, 39%, 0.22 ); // hsl(0, 0%, 54%);
 @tab-bar-border-color-transparent    : hsla(0, 0%, 100%, 0.5); // hsla(0, 0%, 0%, 0.3);
 @tab-background-color                : hsl(0, 0%, 13.7%); // hsl(0, 0%, 70%);
 @tab-bar-background-color            : hsl(0, 0%, 13.7%); // @tab-background-color;
@@ -93,7 +93,7 @@
 
 @tree-view-background-color          : transparent;
 @tree-view-border-color              : @tab-bar-border-color-transparent;
-@tree-view-background-color-highlight: hsla(300, 0.7%, 30%, 0.8); // linear-gradient(to right, rgba(0,0,0, 0.18), rgba(0,0,0, 0.15), rgba(0,0,0, 0.22));
+@tree-view-background-color-highlight: hsl(209.4, 100%, 50%); // hsla(300, 0.7%, 100%, 0.25); // linear-gradient(to right, rgba(0,0,0, 0.18), rgba(0,0,0, 0.15), rgba(0,0,0, 0.22));
 
 @scrollbar-color                     : hsl(0, 0%, 76%);
 @scrollbar-background-color          : hsl(0, 0%, 98%);
@@ -135,9 +135,9 @@
 @component-icon-padding              : 6px;
 @component-icon-size                 : 16px;
 @component-line-height               : @font-size * 2;
-@component-border-radius             : 6px;
-@component-border-radius-small       : @component-border-radius / 2;
-@component-border-radius-large       : @component-border-radius * 2;
+@component-border-radius             : 3px;
+@component-border-radius-small       : 3px; // @component-border-radius / 2;
+@component-border-radius-large       : 18px; @component-border-radius * 2;
 
 @tab-height                          : 24px;
 @height__list-item                   : @tab-height;
@@ -147,8 +147,8 @@
 @em                                  : @html-font-size * 1em; // Shorthand for outputting ems, e.g. “12/@em”
 @rem                                 : @html-font-size * 1rem; // Shorthand for outputting ems, e.g. “12/@rem
 
-@font-family                         : ".SFNSText", "Lucida Grande", "Segoe UI", sans-serif;
-@font-family-headlines               : ".SFNSDisplay", "Lucida Grande", "Segoe UI", sans-serif;
+@font-family                         : "Sklad Sans", sans-serif;
+@font-family-headlines               : "Sklad Sans", sans-serif;
 
 @transition--default                 : 0.15s ease-out;
 @opacity-blurred                     : 0.5;

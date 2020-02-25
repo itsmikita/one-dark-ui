@@ -5,35 +5,38 @@
 .settings-view atom-text-editor,
 .modal atom-text-editor {
   border: 1px solid @input-border-color;
-  padding: 0 (@margin-inner-selection * 2);
+  line-height: 18px;
+  border-radius: 3px;
+  padding: 2px 6px;
   background-color: @input-background-color;
   transition: box-shadow @transition--default;
   color: @text-color !important; // used `!important` because some syntax themes overwrite this
 
   // Styles of the text when it is not selected
   .selection .region {
-    @color: contrast(@input-background-color);
+    // @color: contrast(@input-background-color);
+    // background-color: hsla(hue(@color), saturation(@color), lightness(@color), 0.175);
 
-    background-color: hsla(hue(@color), saturation(@color), lightness(@color), 0.175);
+    background-color: @background-color-selected;
     height: @height-inner-selection !important;
     margin-top: @margin-inner-selection;
   }
 
   .cursor {
     // Overwrite inline styles for cursor
-    width: 1px !important;
-    border-left-width: 1px !important;
-    height: @height-inner-selection !important;
-    margin-top: @margin-inner-selection;
-    border-color: @text-color;
+    // width: 1px !important;
+    // border-left-width: 1px !important;
+    // height: @height-inner-selection !important;
+    // margin-top: @margin-inner-selection;
+    // border-color: @text-color;
   }
 
   // input field is selected
   &.is-focused {
     border-color: @input-border-color-active;
     color: @text-color-highlight;
-    border-radius: @component-border-radius-small; // otherwise the `box-shadow` doesn’t appear rounded
-    box-shadow: 0 0 0 3/@rem @input-outline-color-active;
+    // border-radius: @component-border-radius-small; // otherwise the `box-shadow` doesn’t appear rounded
+    // box-shadow: 0 0 0 3/@rem @input-outline-color-active;
 
     .placeholder-text {
       color: @text-color-subtle;
@@ -41,7 +44,8 @@
 
     // Background of highlighted text
     .selection .region {
-      background-color: tint(@background-color-selected, 75%);
+      // background-color: tint(@background-color-selected, 75%);
+      background-color: @background-color-selected;
     }
   } // .is-focused
 } // editor.mini

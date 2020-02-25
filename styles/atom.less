@@ -1,23 +1,34 @@
 @import "ui-variables";
 
+.title-bar {
+  background-image: linear-gradient( hsl( 0, 0%, 24.7% ), hsl( 0, 0%, 20.4% ) );
+  border-bottom: 1px solid rgba( 255, 255, 255, 0.1 );
+}
+.is-blurred .title-bar {
+  background-image: none;
+}
+
 atom-workspace,
 .atom-dock-mask,
 .pane {
-  background: @base-background-color;
+  // background: @base-background-color;
+  background-color: rgba( 0, 0, 0, 0.2 );
+  -webkit-font-smoothing: grayscale;
 
   // User settings
-  .native-ui-macTransparency & {
+  & {
     background: transparent;
   }
 }
 
+
 html {
-  background: @base-background-color;
+  background: @base-background-color-transparent; // @base-background-color;
 
   // User settings
-  &.native-ui-macTransparency {
-    background: @base-background-color-transparent;
-  }
+  // &.native-ui-macTransparency {
+  //   background: @base-background-color-transparent;
+  // }
 }
 
 atom-panel.left,

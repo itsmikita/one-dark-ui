@@ -3,8 +3,8 @@
 
 .mixin-btn(@color) {
   background-color: @color;
-  border-radius: @component-border-radius-small;
-  font-size: 12px;
+  // border-radius: @component-border-radius-small;
+  // font-size: 12px;
   border: none;
   color: @button-text-color-inverted;
   box-shadow: @box-shadow-bottom;
@@ -17,6 +17,10 @@
   &:focus {
     outline: none !important;
     box-shadow: @box-shadow-bottom !important;
+  }
+
+  &.icon {
+    vertical-align: middle;
   }
 
   &.icon:hover {

@@ -1,0 +1,25 @@
+.icon( @symbol ) {
+  content: @symbol;
+  display: inline-block;
+  font-family: "SF Pro Rounded";
+  font-size: 15px;
+  font-weight: normal; 
+  width: auto;
+  height: auto;
+  margin-right: 4px;
+  text-align: center;
+}
+
+.icon-repo:before,
+.project-root .project-root-header .icon-repo:before {
+  .icon( "􀈮" );
+}
+.icon-file-text:before {
+  .icon( "􀈸" );
+}
+.icon-file-directory:before {
+  .icon( "􀈖" );
+}
+.icon-tools:before {
+  .icon( "􀎖" );
+}
